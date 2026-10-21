@@ -47,7 +47,19 @@ export const media: Media[] = [
     alt: "Прогулка по зелёному саду — референс из брендбука",
   },
 ];
-export const apartments: Apartment[] = [];
+// Explicit examples only: never imply actual inventory, prices, floors or availability.
+export const apartments: Apartment[] = [0, 1, 2, 3].flatMap((rooms) =>
+  [1, 2, 3].map((variant) => ({
+    id: `demo-${rooms}-${variant}`,
+    rooms,
+    area: [26, 41, 64, 86][rooms] + (variant - 1) * 3.5,
+    floor: 0,
+    price: null,
+    available: false,
+    status: "demo" as const,
+    plan: assetPath(`/media/plans/demo-${rooms}-${variant}.svg`),
+  })),
+);
 export const videos: {
   id: string;
   title: string;
@@ -81,12 +93,13 @@ export function filterApartments(
   items: Apartment[],
   rooms: string,
   onlyAvailable: boolean,
+  isPreview = false,
 ) {
   return items.filter(
     (a) =>
-      a.status === "confirmed" &&
+      (a.status === "confirmed" || (isPreview && a.status === "demo")) &&
       (rooms === "all" || a.rooms === Number(rooms)) &&
-      (!onlyAvailable || a.available),
+      (a.status === "demo" || !onlyAvailable || a.available),
   );
 }
 export const missing = [

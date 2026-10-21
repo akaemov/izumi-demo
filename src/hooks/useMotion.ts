@@ -38,7 +38,7 @@ export function useMotion() {
             // No delayed animation for an anchor target or a focused control.
             if (entry.target.contains(document.activeElement)) return;
             const image = entry.target.matches(
-              ".photo-tall, .garden, .location-art",
+              ".photo-tall, .garden, .location-art, .gallery-item > div, .lot-plan",
             );
             play(
               entry.target,
@@ -57,9 +57,14 @@ export function useMotion() {
         },
         { threshold: 0.1, rootMargin: "0px 0px -24px 0px" },
       );
+      observeTargets();
+    }
+
+    function observeTargets() {
+      if (preference.matches) return;
       document
         .querySelectorAll(
-          ".section-heading, .about-main > h2, .two-copy > p, .architecture-copy, .photo-tall, .garden, .location-art, .space-details article, .infrastructure details, .purchase > h2, .purchase > div, .journal-grid > article, .developer > div, .contacts > div, .catalog-empty, .gallery-item",
+          ".section h2, .section h3, .section-heading > p, .two-copy > p, .photo-tall, .garden, .location-art, .infrastructure details, .purchase > div, .gallery-item > div, .lot-plan",
         )
         .forEach((element) => {
           if (!seen.has(element)) observer?.observe(element);
@@ -95,10 +100,17 @@ export function useMotion() {
         { duration: 1400 },
       );
     observe();
+    // React inserts new cards when categories change. Observe only DOM additions,
+    // never scroll events or style mutations, and retain the one-time reveal set.
+    const mutationObserver = new MutationObserver(observeTargets);
+    const main = document.querySelector("main");
+    if (main)
+      mutationObserver.observe(main, { childList: true, subtree: true });
     preference.addEventListener("change", onPreferenceChange);
     document.addEventListener("focusin", onFocus);
     return () => {
       disposed = true;
+      mutationObserver?.disconnect();
       observer?.disconnect();
       animations.forEach((animation) => animation.cancel());
       preference.removeEventListener("change", onPreferenceChange);

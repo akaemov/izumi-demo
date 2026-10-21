@@ -1443,3 +1443,227 @@ h3 {
     transform: rotate(45deg);
   }
 }
+
+/* Shared geometry and the illustrative apartment collection. */
+button,
+.button,
+.header-cta,
+.round-link,
+.zoom,
+img,
+video,
+.hero-visual,
+.photo-tall,
+.garden,
+.location-art,
+.gallery-item > div,
+.lightbox-image,
+.plan {
+  border-radius: 10px;
+}
+.catalog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid #eee9df33;
+  border-bottom: 1px solid #eee9df33;
+}
+.catalog-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.catalog-tabs button {
+  padding: 12px 21px;
+  border: 1px solid #eee9df44;
+  color: var(--ivory);
+  font-size: 12px;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+.catalog-tabs button[aria-pressed="true"] {
+  background: var(--ivory);
+  color: var(--burgundy);
+  border-color: var(--ivory);
+}
+.catalog-tabs button:hover {
+  border-color: var(--ivory);
+}
+.catalog-count {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #d2c2bb;
+}
+.catalog-notice {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #d2c2bb;
+  max-width: 650px;
+  margin-top: 22px;
+}
+.lot-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+.lot-results > .catalog-empty {
+  grid-column: 1/-1;
+}
+.lot-card {
+  border: 0;
+  border-radius: 10px;
+  padding: 24px;
+  background: var(--ivory);
+  color: var(--burgundy);
+  min-width: 0;
+}
+.lot-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+}
+.lot-plan {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 260px;
+  padding: 0;
+  background: #faf7f1;
+  margin: 22px 0 25px;
+  overflow: hidden;
+}
+.lot-plan img {
+  object-fit: contain;
+  padding: 12px;
+}
+.plan-expand {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 18px;
+}
+.lot-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.lot-title h3 {
+  font-size: 24px;
+}
+.lot-title > span {
+  font-family: var(--font-tenor);
+  font-size: 25px;
+  white-space: nowrap;
+}
+.lot-title small {
+  font-family: var(--font-golos);
+  font-size: 12px;
+}
+.lot-card .lot-caption {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 10px 0 23px;
+}
+.lot-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+.lot-button:hover {
+  background: var(--burgundy);
+  color: var(--ivory);
+}
+.lot-button > span {
+  font-size: 17px;
+}
+.plan {
+  background: #faf7f1;
+  overflow: hidden;
+}
+.plan img {
+  padding: 15px;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .lot-card {
+    padding: 17px;
+  }
+  .lot-title {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .lot-plan {
+    height: 220px;
+  }
+  .catalog-tabs button {
+    padding: 11px 15px;
+  }
+}
+@media (max-width: 760px) {
+  .catalog-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .catalog-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 9px;
+  }
+  .catalog-tabs button {
+    font-size: 11px;
+    padding: 12px 10px;
+  }
+  .lot-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+  .lot-card {
+    padding: 18px;
+  }
+  .lot-title {
+    flex-wrap: wrap;
+  }
+  .lot-plan {
+    height: 230px;
+  }
+}
+@media (max-width: 600px) {
+  .lot-results {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .lot-card {
+    padding: 22px;
+  }
+  .lot-plan {
+    height: 270px;
+  }
+  .lot-title {
+    flex-wrap: nowrap;
+  }
+}

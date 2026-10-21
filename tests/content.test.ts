@@ -33,3 +33,19 @@ test("catalog filters confirmed inventory and availability", () => {
   assert.equal(filterApartments(items, "1", true).length, 0);
   assert.equal(filterApartments(items, "all", false).length, 2);
 });
+
+test("demo catalog is explicit and isolated from confirmed inventory", async () => {
+  const { apartments } = await import("../src/lib/content.ts");
+  assert.equal(apartments.length, 12);
+  assert.equal(filterApartments(apartments, "all", false).length, 0);
+  for (const rooms of ["0", "1", "2", "3"]) {
+    const examples = filterApartments(apartments, rooms, true, true);
+    assert.equal(examples.length, 3);
+    assert.ok(
+      examples.every(
+        (a) =>
+          a.status === "demo" && a.price === null && !a.available && a.plan,
+      ),
+    );
+  }
+});

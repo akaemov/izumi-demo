@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-test("buyer flow, gallery, empty catalog and honest contact state", async ({
+test("buyer flow, demo catalog, gallery and honest contact state", async ({
   page,
 }, info) => {
   const errors: string[] = [];
@@ -14,9 +14,16 @@ test("buyer flow, gallery, empty catalog and honest contact state", async ({
       .click();
     await expect(page.locator("#mobile-menu")).toHaveCount(0);
   }
-  await page.locator("#apartments select").selectOption("2");
-  await expect(page.getByText("Ваша квартира — впереди")).toBeVisible();
-  await page.getByRole("button", { name: "Сбросить фильтры" }).click();
+  await page.getByRole("button", { name: "2-комнатные", exact: true }).click();
+  await expect(page.locator(".lot-card")).toHaveCount(3);
+  await page.locator(".lot-button").first().click();
+  await expect(page.locator("dialog")).toContainText(
+    "Демонстрационная планировка",
+  );
+  await page.keyboard.press("Escape");
+  await expect(
+    page.getByRole("button", { name: "2-комнатные", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
   await page.locator(".gallery-item").first().click();
   await expect(page.locator("dialog")).toBeVisible();
   await page.getByRole("button", { name: "Следующее изображение" }).click();

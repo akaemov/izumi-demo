@@ -62,8 +62,8 @@ export default function Site({ preview }: { preview: boolean }) {
   useMotion();
   const [menu, setMenu] = useState(false),
     [category, setCategory] = useState("Все материалы"),
-    [rooms, setRooms] = useState("all"),
-    [available, setAvailable] = useState(true),
+    [rooms, setRooms] = useState("1"),
+    [available] = useState(true),
     [active, setActive] = useState<Media | null>(null),
     [selected, setSelected] = useState<Apartment | null>(null),
     [contact, setContact] = useState(false),
@@ -75,7 +75,7 @@ export default function Site({ preview }: { preview: boolean }) {
   const gallery = shown.filter(
     (m) => category === "Все материалы" || m.category === category,
   );
-  const lots = filterApartments(apartments, rooms, available);
+  const lots = filterApartments(apartments, rooms, available, preview);
   const isOpen = !!active || contact || !!selected || !!video;
   useEffect(() => {
     if (isOpen) {
@@ -431,51 +431,80 @@ export default function Site({ preview }: { preview: boolean }) {
               что важно именно вам.
             </p>
           </div>
-          <div className="filters">
-            <label>
-              Количество комнат
-              <select value={rooms} onChange={(e) => setRooms(e.target.value)}>
-                <option value="all">Все варианты</option>
-                {[0, 1, 2, 3, 4].map((n) => (
-                  <option key={n} value={n}>
-                    {n === 0 ? "Студия" : `${n} комнаты`}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                checked={available}
-                onChange={(e) => setAvailable(e.target.checked)}
-              />{" "}
-              Только доступные
-            </label>
-            <button
-              className="text-link"
-              onClick={() => {
-                setRooms("all");
-                setAvailable(true);
-              }}
+          <div className="catalog-toolbar">
+            <div
+              className="catalog-tabs"
+              role="group"
+              aria-label="Тип квартиры"
             >
-              Сбросить фильтры ↺
-            </button>
+              {[
+                ["1", "1-комнатные"],
+                ["2", "2-комнатные"],
+                ["0", "Студии"],
+                ["3", "3-комнатные"],
+              ].map(([value, title]) => (
+                <button
+                  key={value}
+                  aria-pressed={rooms === value}
+                  onClick={() => setRooms(value)}
+                >
+                  {title}
+                </button>
+              ))}
+            </div>
+            <span className="catalog-count" aria-live="polite">
+              {lots.length} {preview ? "примера" : "варианта"}
+            </span>
           </div>
+          {preview && (
+            <p className="catalog-notice">
+              Демонстрационный каталог. Площади и схемы условные — это не
+              квартиры ЖК и не предложения о продаже.
+            </p>
+          )}
           <div className="lot-results" aria-live="polite">
             {lots.length ? (
               lots.map((a) => (
-                <article className="lot" key={a.id}>
-                  <h3>
-                    {a.rooms === 0 ? "Студия" : `${a.rooms}-комнатная`} ·{" "}
-                    {a.area} м²
-                  </h3>
-                  <p>
-                    {a.floor} этаж ·{" "}
-                    {a.price
-                      ? `${a.price.toLocaleString("ru")} ₽`
-                      : "Цена уточняется"}
+                <article className="lot lot-card" key={a.id}>
+                  <div className="lot-top">
+                    <span>
+                      {a.status === "demo"
+                        ? "Пример планировки"
+                        : `Квартира ${a.id}`}
+                    </span>
+                    <span>{String(lots.indexOf(a) + 1).padStart(2, "0")}</span>
+                  </div>
+                  <button
+                    className="lot-plan"
+                    onClick={() => setSelected(a)}
+                    aria-label={`Открыть планировку ${a.id}`}
+                  >
+                    {a.plan ? (
+                      <SafeImage
+                        src={a.plan}
+                        alt={`Условная планировка: ${a.rooms === 0 ? "студия" : `${a.rooms}-комнатная`}, ${a.area} м²`}
+                        fill
+                        sizes="(max-width: 600px) 90vw, (max-width: 1000px) 44vw, 28vw"
+                      />
+                    ) : (
+                      <span>Планировка ожидается</span>
+                    )}
+                    <span className="plan-expand" aria-hidden="true">
+                      ↗
+                    </span>
+                  </button>
+                  <div className="lot-title">
+                    <h3>{a.rooms === 0 ? "Студия" : `${a.rooms}-комнатная`}</h3>
+                    <span>
+                      {a.area.toLocaleString("ru")} <small>м²</small>
+                    </span>
+                  </div>
+                  <p className="lot-caption">
+                    {a.status === "demo"
+                      ? "Условная площадь · схема для знакомства"
+                      : `${a.floor} этаж · ${a.price ? `${a.price.toLocaleString("ru")} ₽` : "Цена уточняется"}`}
                   </p>
-                  <button onClick={() => setSelected(a)}>
+                  <button className="lot-button" onClick={() => setSelected(a)}>
                     Смотреть планировку <Arrow />
                   </button>
                 </article>
@@ -485,12 +514,12 @@ export default function Site({ preview }: { preview: boolean }) {
                 <span className="empty-number">∞</span>
                 <div>
                   <h3>
-                    {apartments.length
+                    {apartments.some((a) => a.status === "confirmed")
                       ? "Подходящих квартир не найдено"
                       : "Ваша квартира — впереди"}
                   </h3>
                   <p>
-                    {apartments.length
+                    {apartments.some((a) => a.status === "confirmed")
                       ? "Попробуйте изменить параметры выбора."
                       : "Каталог готовится к открытию. Планировки, площади, цены и наличие появятся после подтверждения ассортимента."}
                   </p>
@@ -775,8 +804,11 @@ export default function Site({ preview }: { preview: boolean }) {
             <Label>Остаёмся на связи</Label>
             {inquiryId && (
               <p>
-                Ваш выбор: квартира {inquiryId}. Контекст сохранён до закрытия
-                окна.
+                Ваш выбор:{" "}
+                {inquiryId.startsWith("demo-")
+                  ? "демонстрационная схема"
+                  : "квартира"}{" "}
+                {inquiryId}. Контекст сохранён до закрытия окна.
               </p>
             )}
             <h2>
@@ -799,9 +831,19 @@ export default function Site({ preview }: { preview: boolean }) {
         )}
         {selected && (
           <div className="contact-dialog">
-            <h2>Квартира {selected.id}</h2>
+            <Label>
+              {selected.status === "demo"
+                ? "Демонстрационная планировка"
+                : `Квартира ${selected.id}`}
+            </Label>
+            <h2>
+              {selected.rooms === 0 ? "Студия" : `${selected.rooms}-комнатная`}{" "}
+              · {selected.area.toLocaleString("ru")} м²
+            </h2>
             <p>
-              {selected.area} м² · {selected.floor} этаж
+              {selected.status === "demo"
+                ? "Условная схема и площадь. Не относится к квартирам ЖК, не является предложением о продаже."
+                : `${selected.floor} этаж`}
             </p>
             {selected.plan ? (
               <div className="plan">
@@ -818,9 +860,11 @@ export default function Site({ preview }: { preview: boolean }) {
               </Pending>
             )}
             <p>
-              {selected.available
-                ? "Условия и наличие требуют подтверждения у отдела продаж."
-                : "Этот лот недоступен для выбора."}
+              {selected.status === "demo"
+                ? "Иллюстрация помогает представить организацию пространства. Реальные планировки и условия будут опубликованы отдельно."
+                : selected.available
+                  ? "Условия и наличие требуют подтверждения у отдела продаж."
+                  : "Этот лот недоступен для выбора."}
             </p>
             <button
               className="button"

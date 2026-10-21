@@ -1667,3 +1667,654 @@ video,
     flex-wrap: nowrap;
   }
 }
+
+/* Marketing sections share the original Izumi palette and quiet editorial rhythm. */
+.header,
+.mobile-nav,
+.mobile-nav a {
+  border-bottom: 0;
+}
+.header {
+  gap: 24px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.presentation-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--burgundy);
+  color: var(--ivory);
+  font-size: 11px;
+  white-space: nowrap;
+  transition: background-color 200ms ease;
+}
+.presentation-download:hover {
+  background: #653442;
+}
+.presentation-download > span:last-child {
+  font-size: 17px;
+}
+.about {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.about > .philosophy-pattern {
+  z-index: -1;
+  object-fit: cover;
+  object-position: left bottom;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  border-radius: 0;
+  pointer-events: none;
+}
+.benefits {
+  background: #e4ded3;
+}
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+.benefit-photo {
+  display: block;
+  position: relative;
+  height: 310px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.benefit-photo img {
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+.benefit-tile:nth-child(2) .benefit-photo img {
+  object-position: 60% 50%;
+}
+.benefit-number {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  color: var(--ivory);
+  font-size: 11px;
+  z-index: 1;
+  text-shadow: 0 1px 5px #401f28;
+}
+.benefit-photo small {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  padding: 4px 8px;
+  font-size: 8px;
+  background: var(--ivory);
+  color: var(--burgundy);
+  border-radius: 5px;
+  z-index: 1;
+}
+.benefit-tile h3 {
+  font-size: 27px;
+  margin-top: 25px;
+}
+.benefit-tile > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  margin-top: 15px;
+  max-width: 340px;
+}
+.benefit-tile .text-link {
+  margin-top: 12px;
+}
+.benefit-disclaimer {
+  margin-top: 36px;
+  color: var(--muted);
+  font-size: 10px;
+  max-width: 720px;
+}
+.presentation-cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9%;
+  background: var(--sage);
+  overflow: hidden;
+}
+.cta-copy h2 {
+  margin: 26px 0;
+  font-size: clamp(44px, 4.8vw, 70px);
+}
+.cta-copy h2 em {
+  color: var(--ivory);
+}
+.cta-copy > p {
+  max-width: 370px;
+  line-height: 1.9;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+.cta-copy .button {
+  min-width: 260px;
+}
+.cta-copy small {
+  display: block;
+  font-size: 9px;
+  margin-top: 15px;
+  max-width: 330px;
+}
+.booklet-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 430px;
+  padding: 20px 20px 45px;
+}
+.booklet-scene::before {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  border: 1px solid #eee9df55;
+  border-radius: 50%;
+}
+.booklet {
+  width: 290px;
+  min-height: 380px;
+  padding: 45px 35px 25px;
+  background: var(--ivory);
+  position: relative;
+  transform: rotate(12deg);
+  box-shadow: 20px 25px 35px #401f2833;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 3px 8px 8px 3px;
+  transition: transform 500ms ease;
+}
+.booklet img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+.booklet-spine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 12px;
+  background: var(--burgundy);
+}
+.booklet-caption {
+  font-family: var(--font-tenor);
+  font-size: 32px;
+  line-height: 1.15;
+  margin-top: 25px;
+}
+.booklet-footer {
+  margin-top: auto;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.booklet-hint {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+.mortgage-cta {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0;
+  padding: 0;
+  background: #c69b70;
+}
+.mortgage-copy {
+  padding: 75px 11%;
+}
+.mortgage-copy h2 {
+  margin: 26px 0;
+  font-size: clamp(42px, 4vw, 61px);
+}
+.mortgage-copy h2 em {
+  color: var(--ivory);
+}
+.mortgage-copy > p {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 420px;
+}
+.mortgage-copy form {
+  margin-top: 28px;
+}
+.mortgage-copy fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.form-row label {
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-row input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #401f2877;
+  padding: 10px 0;
+  color: var(--burgundy);
+  font-size: 12px;
+  border-radius: 0;
+  -webkit-text-fill-color: var(--burgundy);
+  opacity: 1;
+}
+.form-row input::placeholder {
+  color: #593d35;
+  -webkit-text-fill-color: #593d35;
+  opacity: 1;
+}
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 9px;
+  line-height: 1.7;
+}
+.consent input {
+  flex-shrink: 0;
+}
+.mortgage-copy .button {
+  margin-top: 15px;
+  width: 100%;
+}
+.mortgage-copy .button:disabled {
+  background: #54323a;
+  color: #eee9df;
+  border-color: #54323a;
+  cursor: not-allowed;
+}
+#mortgage-status {
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 14px 0 4px;
+  max-width: 420px;
+}
+.privacy-link {
+  font-size: 9px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mortgage-copy > small {
+  display: block;
+  font-size: 9px;
+  line-height: 1.8;
+  margin-top: 24px;
+  max-width: 440px;
+}
+.mortgage-art {
+  position: relative;
+  background: var(--mint);
+  overflow: hidden;
+  padding: 80px 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 660px;
+}
+.mortgage-art > span {
+  z-index: 1;
+  font-family: var(--font-tenor);
+  font-size: clamp(37px, 4vw, 58px);
+  line-height: 1.18;
+  letter-spacing: -0.04em;
+}
+.mortgage-art > small {
+  margin-top: 25px;
+  font-size: 10px;
+  z-index: 1;
+}
+.family-arches {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.5;
+}
+.family-arches i {
+  position: absolute;
+  border: 1px solid var(--burgundy);
+  border-radius: 200px 200px 0 0;
+  width: 190px;
+  height: 330px;
+  top: 75px;
+  left: 10%;
+  transform: rotate(-25deg);
+}
+.family-arches i:nth-child(2) {
+  left: 40%;
+  top: 15px;
+  width: 230px;
+  height: 420px;
+  transform: rotate(15deg);
+}
+.family-arches i:nth-child(3) {
+  top: 215px;
+  left: 29%;
+  width: 130px;
+  height: 220px;
+  background: var(--mint);
+  transform: rotate(-5deg);
+}
+.documents {
+  position: relative;
+  background: #f5f1e9;
+}
+.documents .section-heading {
+  margin-bottom: 30px;
+}
+.documents h2 {
+  color: #9b6c42;
+}
+.documents-intro {
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 750px;
+  margin-bottom: 45px;
+}
+.document-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 55px;
+}
+.document-item {
+  padding: 27px 0;
+}
+.document-item summary {
+  align-items: center;
+  gap: 22px;
+  min-height: 70px;
+}
+.document-item summary > div {
+  min-width: 0;
+}
+.document-item h3 {
+  font-family: var(--font-tenor);
+  font-size: 23px;
+  line-height: 1.25;
+}
+.document-item summary span {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 11px;
+}
+.document-item summary b {
+  flex-shrink: 0;
+  font-size: 19px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b8895566;
+  color: #9b6c42;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+}
+.document-item p {
+  margin-left: 0;
+  max-width: 430px;
+}
+.document-item[open] summary b {
+  transform: rotate(90deg);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.glass-photo {
+  isolation: isolate;
+}
+.glass-photo::before {
+  content: "";
+  position: absolute;
+  inset: -20% -45%;
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    #fff0 42%,
+    #ffffff38 49%,
+    #ffffff88 50%,
+    #ffffff26 54%,
+    transparent 63%
+  );
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+@keyframes glass-shine {
+  0% {
+    transform: translateX(-75%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(75%);
+    opacity: 0;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .glass-photo:hover::before {
+    animation: glass-shine 900ms ease-out;
+  }
+  .benefit-photo:hover img {
+    transform: scale(1.025);
+  }
+  .booklet-scene:hover .booklet {
+    transform: rotate(7deg) translateY(-5px);
+  }
+}
+@media (max-width: 1180px) {
+  .header-actions .header-cta {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .header {
+    gap: 18px;
+  }
+  .presentation-download {
+    padding: 12px 14px;
+    gap: 12px;
+    font-size: 10px;
+  }
+  .benefit-grid {
+    gap: 20px;
+  }
+  .benefit-photo {
+    height: 250px;
+  }
+  .benefit-tile h3 {
+    font-size: 24px;
+  }
+  .booklet {
+    width: 240px;
+    min-height: 340px;
+    padding: 30px;
+  }
+  .booklet-scene::before {
+    width: 340px;
+    height: 340px;
+  }
+  .booklet-caption {
+    font-size: 28px;
+  }
+  .document-item h3 {
+    font-size: 21px;
+  }
+  .mortgage-copy {
+    padding: 60px 8%;
+  }
+  .mortgage-art {
+    padding: 60px 9%;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+@media (max-width: 760px) {
+  .header {
+    padding-left: 6%;
+    padding-right: 6%;
+    gap: 10px;
+  }
+  .header .brand img {
+    width: 96px;
+  }
+  .header-actions {
+    margin-left: auto;
+  }
+  .presentation-download {
+    font-size: 9px;
+    gap: 9px;
+    padding: 10px 11px;
+    white-space: normal;
+    max-width: 135px;
+    line-height: 1.4;
+  }
+  .menu-button {
+    gap: 10px;
+    font-size: 11px;
+  }
+  .benefit-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+  .benefit-photo {
+    height: 340px;
+  }
+  .benefit-tile h3 {
+    margin-top: 20px;
+    font-size: 28px;
+  }
+  .benefit-tile > p {
+    max-width: none;
+  }
+  .presentation-cta {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cta-copy h2 {
+    font-size: 46px;
+  }
+  .cta-copy > p {
+    font-size: 13px;
+  }
+  .booklet-scene {
+    min-height: 390px;
+    padding-bottom: 45px;
+  }
+  .booklet {
+    width: 240px;
+    min-height: 320px;
+  }
+  .booklet-scene::before {
+    width: 320px;
+    height: 320px;
+  }
+  .mortgage-cta {
+    grid-template-columns: 1fr;
+  }
+  .mortgage-copy {
+    padding: 60px 6%;
+  }
+  .mortgage-copy h2 {
+    font-size: 45px;
+  }
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .mortgage-art {
+    min-height: 400px;
+    padding: 60px 6%;
+  }
+  .mortgage-art > span {
+    font-size: 46px;
+  }
+  .family-arches {
+    left: 35%;
+  }
+  .document-grid {
+    grid-template-columns: 1fr;
+  }
+  .document-item h3 {
+    font-size: 22px;
+  }
+  .document-item {
+    padding: 24px 0;
+  }
+  .documents-intro {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 360px) {
+  .header .brand img {
+    width: 80px;
+  }
+  .presentation-download {
+    max-width: 119px;
+    padding: 9px;
+    font-size: 8px;
+  }
+  .menu-button {
+    font-size: 10px;
+    gap: 6px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+.developer-documents {
+  border-top: 1px solid var(--line);
+  padding-top: 23px;
+}
+.developer-documents h3 {
+  font-family: var(--font-golos);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.developer-documents p {
+  margin-top: 8px;
+  font-size: 12px;
+}

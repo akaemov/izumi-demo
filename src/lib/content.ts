@@ -159,3 +159,49 @@ export const missing = [
     "проверить до публикации",
   ],
 ];
+
+export const brandBenefits = [
+  {
+    title: "Вдохновение природой",
+    text: "В основе «Изуми» — образ источника: чистота, свет и жизненная сила.",
+    image: "garden",
+    alt: "Сад — атмосферный референс из брендбука",
+    target: "#about",
+  },
+  {
+    title: "Внимание к деталям",
+    text: "Тёплая палитра, выразительные фактуры и спокойная эстетика бренда.",
+    image: "interior",
+    alt: "Интерьер — атмосферный референс из брендбука",
+    target: "#architecture",
+  },
+  {
+    title: "Своя история дома",
+    text: "Познакомьтесь с характером «Изуми» и примерьте разные сценарии пространства.",
+    image: "light",
+    alt: "Свет и тени — атмосферный референс из брендбука",
+    target: "#apartments",
+  },
+];
+
+const documentTitles = [
+  ["declaration", "Проектная декларация"],
+  ["permit", "Разрешение на строительство"],
+  ["contract", "Проект договора участия в долевом строительстве"],
+  ["expertise", "Экспертиза проектной документации"],
+  ["notice", "Извещение о начале строительства"],
+  ["land", "Схема планировочной организации земельного участка"],
+  ["urban", "Градостроительный план"],
+  ["audit", "Аудиторское заключение"],
+];
+
+export type ProjectDocument = {
+  id: string;
+  title: string;
+  href: string | null;
+  date: string | null;
+  status: Status;
+};
+export const projectDocuments: ProjectDocument[] = documentTitles.map(
+  ([id, title]) => ({ id, title, href: null, date: null, status: "pending" }),
+);

@@ -2,6 +2,13 @@
 import { useEffect, useRef, useState } from "react";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
+import {
+  Benefits,
+  Documents,
+  FamilyMortgageCTA,
+  PresentationCTA,
+  presentationPath,
+} from "@/components/MarketingSections";
 import { useMotion } from "@/hooks/useMotion";
 import {
   assetPath,
@@ -103,7 +110,6 @@ export default function Site({ preview }: { preview: boolean }) {
   }
   return (
     <>
-      <div className="reading-progress" aria-hidden="true" />
       <a className="skip" href="#main">
         Перейти к содержимому
       </a>
@@ -130,9 +136,19 @@ export default function Site({ preview }: { preview: boolean }) {
             </a>
           ))}
         </nav>
-        <a className="header-cta" href="#apartments">
-          Выбрать квартиру <Arrow />
-        </a>
+        <div className="header-actions">
+          <a
+            className="presentation-download"
+            href={assetPath(presentationPath)}
+            download="Изуми — презентация концепции.pdf"
+          >
+            <span>Скачать презентацию</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+          <a className="header-cta" href="#apartments">
+            Выбрать квартиру <Arrow />
+          </a>
+        </div>
         <button
           className="menu-button"
           aria-expanded={menu}
@@ -151,6 +167,7 @@ export default function Site({ preview }: { preview: boolean }) {
           {[
             ...nav,
             ["Условия покупки", "purchase"],
+            ["Документация", "documents"],
             ["Контакты", "contacts"],
           ].map(([name, id]) => (
             <a key={id} onClick={() => setMenu(false)} href={`#${id}`}>
@@ -188,7 +205,9 @@ export default function Site({ preview }: { preview: boolean }) {
               </a>
             </div>
           </div>
-          <div className={`hero-visual ${preview ? "" : "brand-art"}`}>
+          <div
+            className={`hero-visual glass-photo ${preview ? "" : "brand-art"}`}
+          >
             {preview && (
               <SafeImage
                 src={assetPath("/media/light.webp")}
@@ -220,6 +239,14 @@ export default function Site({ preview }: { preview: boolean }) {
           </div>
         </section>
         <section id="about" className="section about">
+          <Image
+            src={assetPath("/media/scales.webp")}
+            className="philosophy-pattern"
+            fill
+            sizes="100vw"
+            alt=""
+            aria-hidden="true"
+          />
           <div className="section-side">
             <Label>01 / Философия дома</Label>
             <div className="semicircles" aria-hidden="true">
@@ -248,6 +275,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </a>
           </div>
         </section>
+        <Benefits preview={preview} />
         <section id="architecture" className="architecture section">
           <div className="section-heading">
             <div>
@@ -266,7 +294,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </p>
           </div>
           <div className="architecture-grid">
-            <div className="photo-tall">
+            <div className="photo-tall glass-photo">
               {preview ? (
                 <SafeImage
                   src={assetPath("/media/interior.webp")}
@@ -309,6 +337,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </div>
           </div>
         </section>
+        <PresentationCTA />
         <section id="location" className="location section">
           <div>
             <Label>03 / Окружение</Label>
@@ -374,7 +403,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </p>
           </div>
           <div className="spaces-grid">
-            <div className="garden">
+            <div className="garden glass-photo">
               {preview ? (
                 <SafeImage
                   src={assetPath("/media/garden.webp")}
@@ -547,11 +576,12 @@ export default function Site({ preview }: { preview: boolean }) {
               после официального подтверждения. Ставки и платежи пока не
               опубликованы.
             </Pending>
-            <a className="text-link" href="#contacts">
-              Перейти к контактам <Arrow />
+            <a className="text-link" href="#family-mortgage">
+              Заявка на семейную ипотеку <Arrow />
             </a>
           </div>
         </section>
+        <FamilyMortgageCTA />
         <section id="gallery" className="gallery section">
           <div className="section-heading">
             <div>
@@ -594,7 +624,7 @@ export default function Site({ preview }: { preview: boolean }) {
                   className="gallery-item"
                   onClick={() => setActive(m)}
                 >
-                  <div>
+                  <div className="glass-photo">
                     <SafeImage
                       src={m.src}
                       alt={m.alt}
@@ -695,13 +725,19 @@ export default function Site({ preview }: { preview: boolean }) {
                 Юридическое наименование, опыт и реквизиты будут добавлены после
                 проверки.
               </Pending>
-              <Pending title="Документы проекта">
-                Проектная декларация, разрешения и обязательные раскрытия
-                ожидаются.
-              </Pending>
+              <div className="developer-documents">
+                <h3>Документы проекта</h3>
+                <p>
+                  Важные сведения и официальные документы — в отдельном разделе.
+                </p>
+                <a className="text-link" href="#documents">
+                  Открыть документацию <Arrow />
+                </a>
+              </div>
             </div>
           </div>
         </section>
+        <Documents />
         <section id="contacts" className="contacts section">
           <div>
             <Label>10 / Продолжим знакомство</Label>

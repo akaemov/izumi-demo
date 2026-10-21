@@ -41,3 +41,5 @@ npm run deploy:pages
 `src/hooks/useMotion.ts` — однократное раскрытие секций и первого экрана. CSS в конце `globals.css` — переходы меню, модальных окон, галереи и индикатор чтения. Учитывается `prefers-reduced-motion`, включая изменение настройки на открытой странице. Контент не скрывается до появления и остаётся доступным без JS. Прокрутка нативная.
 
 Проверка экспортированной версии: запустите статический сервер с `out/`, размещённым под `/izumi-demo/`, и выполните `PAGES_TEST_URL=http://127.0.0.1:3011/izumi-demo/ node tests/pages-motion.mjs` (системный Chromium либо `CHROMIUM_PATH`).
+
+Презентация концепции скачивается напрямую из хедера и отдельного CTA; файл `public/documents/izumi-presentation.pdf`. Обновление: `node scripts/generate-presentation.mjs`. Документация и плитка — `src/components/MarketingSections.tsx`, их тексты — `src/lib/content.ts`. Ипотечный CTA демонстрационный, отправка и поля отключены по решению пользователя. Браузерная проверка новых блоков: `PAGES_TEST_URL=... node tests/pages-marketing.mjs`.

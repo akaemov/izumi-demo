@@ -38,7 +38,7 @@ export function useMotion() {
             // No delayed animation for an anchor target or a focused control.
             if (entry.target.contains(document.activeElement)) return;
             const image = entry.target.matches(
-              ".photo-tall, .garden, .location-art, .gallery-item > div, .lot-plan",
+              ".photo-tall, .garden, .location-art, .gallery-item > div, .lot-plan, .benefit-photo, .booklet-scene",
             );
             play(
               entry.target,
@@ -64,7 +64,7 @@ export function useMotion() {
       if (preference.matches) return;
       document
         .querySelectorAll(
-          ".section h2, .section h3, .section-heading > p, .two-copy > p, .photo-tall, .garden, .location-art, .infrastructure details, .purchase > div, .gallery-item > div, .lot-plan",
+          ".section h2, .section h3, .section-heading > p, .two-copy > p, .photo-tall, .garden, .location-art, .infrastructure details, .purchase > div, .gallery-item > div, .lot-plan, .benefit-photo, .booklet-scene",
         )
         .forEach((element) => {
           if (!seen.has(element)) observer?.observe(element);

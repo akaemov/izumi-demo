@@ -31,4 +31,4 @@ POST /api/enquiries всегда возвращает 503 до настройк�
 
 ## Перед коммерческим выпуском
 
-Получить данные из реестра, проверить права, подключить CRM и юридические документы. Задать CONTENT_MODE=public, удалить локальный preview override или явно переопределить переменную. Пройти npm run typecheck, npm run lint, npm test, npm run build и браузерные сценарии. Настроить реальный домен, canonical, social preview и robots (сейчас noindex), security headers и production monitoring. Выпуск и удалённый репозиторий в этой задаче не выполнялись.
+Получить данные из реестра, проверить права, подключить CRM и юридические документы. Задать CONTENT_MODE=public, удалить локальный preview override или явно переопределить переменную. Пройти npm run typecheck, npm run lint, npm test, npm run build и браузерные сценарии. Настроить реальный домен, canonical, social preview и robots (сейчас noindex), security headers и production monitoring. Исходный код опубликован в akaemov/izumi-demo, статическая сборка выгружена в ветку gh-pages. Включение Pages и доступность внешней страницы из этой среды не подтверждены.

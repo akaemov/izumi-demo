@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import {
+  assetPath,
   apartments,
   filterApartments,
   media,
@@ -112,7 +113,7 @@ export default function Site({ preview }: { preview: boolean }) {
       <header className="header">
         <a href="#" className="brand" aria-label="Изуми — на главную">
           <Image
-            src="/media/logo.svg"
+            src={assetPath("/media/logo.svg")}
             alt="Изуми — коллекционный дом"
             width={152}
             height={73}
@@ -187,7 +188,7 @@ export default function Site({ preview }: { preview: boolean }) {
           <div className={`hero-visual ${preview ? "" : "brand-art"}`}>
             {preview && (
               <SafeImage
-                src="/media/light.webp"
+                src={assetPath("/media/light.webp")}
                 alt={media[0].alt}
                 fill
                 priority
@@ -265,7 +266,7 @@ export default function Site({ preview }: { preview: boolean }) {
             <div className="photo-tall">
               {preview ? (
                 <SafeImage
-                  src="/media/interior.webp"
+                  src={assetPath("/media/interior.webp")}
                   alt={media[1].alt}
                   fill
                   sizes="(max-width:760px) 100vw, 55vw"
@@ -373,7 +374,7 @@ export default function Site({ preview }: { preview: boolean }) {
             <div className="garden">
               {preview ? (
                 <SafeImage
-                  src="/media/garden.webp"
+                  src={assetPath("/media/garden.webp")}
                   alt={media[2].alt}
                   fill
                   sizes="(max-width:760px) 100vw, 50vw"
@@ -701,7 +702,7 @@ export default function Site({ preview }: { preview: boolean }) {
       <footer>
         <a href="#" className="brand">
           <Image
-            src="/media/logo.svg"
+            src={assetPath("/media/logo.svg")}
             alt="Изуми — коллекционный дом"
             width={152}
             height={73}

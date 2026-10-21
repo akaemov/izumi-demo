@@ -6,3 +6,5 @@ test-results/
 playwright-report/
 *.tsbuildinfo
 .next-public/
+.pages-build/
+out/

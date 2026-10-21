@@ -1,3 +1,6 @@
+export function assetPath(path: string) {
+  return `${process.env.NEXT_PUBLIC_BASE_PATH || ""}${path}`;
+}
 export type Status = "confirmed" | "pending" | "demo";
 export type Media = {
   id: string;
@@ -23,7 +26,7 @@ export const media: Media[] = [
     id: "light",
     title: "Свет и фактура",
     category: "Атмосфера",
-    src: "/media/light.webp",
+    src: assetPath("/media/light.webp"),
     status: "demo",
     alt: "Солнечный свет и тени на деревянной стене — референс из брендбука",
   },
@@ -31,7 +34,7 @@ export const media: Media[] = [
     id: "interior",
     title: "Тактильность пространства",
     category: "Интерьеры",
-    src: "/media/interior.webp",
+    src: assetPath("/media/interior.webp"),
     status: "demo",
     alt: "Бордовое кресло в светлом интерьере — референс из брендбука",
   },
@@ -39,7 +42,7 @@ export const media: Media[] = [
     id: "garden",
     title: "Ближе к природе",
     category: "Окружение",
-    src: "/media/garden.webp",
+    src: assetPath("/media/garden.webp"),
     status: "demo",
     alt: "Прогулка по зелёному саду — референс из брендбука",
   },

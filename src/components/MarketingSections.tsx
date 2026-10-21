@@ -90,7 +90,7 @@ export function Benefits({ preview }: { preview: boolean }) {
         {brandBenefits.map((b, i) => (
           <article className="benefit-tile" key={b.title}>
             <a
-              className="benefit-photo glass-photo"
+              className="benefit-photo"
               href={b.target}
               aria-label={`Узнать больше: ${b.title}`}
             >

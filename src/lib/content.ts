@@ -205,3 +205,48 @@ export type ProjectDocument = {
 export const projectDocuments: ProjectDocument[] = documentTitles.map(
   ([id, title]) => ({ id, title, href: null, date: null, status: "pending" }),
 );
+
+export const collageLayers = [
+  {
+    id: "garden",
+    src: "/media/garden.webp",
+    title: "Природа",
+    alt: "Прогулка в саду — фотостиль из брендбука, не территория ЖК",
+    kind: "reference",
+  },
+  {
+    id: "light",
+    src: "/media/light.webp",
+    title: "Свет",
+    alt: "Солнечные тени — фотостиль из брендбука",
+    kind: "reference",
+  },
+  {
+    id: "forms",
+    src: "/media/brand-semicircles.svg",
+    title: "Ритм",
+    alt: "Золотистые полукружия на бордовом фоне — фирменная графика из гайдбука",
+    kind: "brand",
+  },
+  {
+    id: "ink",
+    src: "/media/brand-ink.webp",
+    title: "Движение",
+    alt: "Абстрактные бордовые мазки кисти — графика из гайдбука",
+    kind: "brand",
+  },
+  {
+    id: "scales",
+    src: "/media/scales.webp",
+    title: "Тактильность",
+    alt: "Рельефный паттерн чешуи из гайдбука Изуми",
+    kind: "brand",
+  },
+  {
+    id: "interior",
+    src: "/media/interior.webp",
+    title: "Фактура",
+    alt: "Бордовое кресло в светлом интерьере — фотостиль из брендбука, не интерьер ЖК",
+    kind: "reference",
+  },
+] as const;

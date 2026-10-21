@@ -58,7 +58,7 @@ try {
       await photo.evaluate(
         (el) => getComputedStyle(el, "::before").animationName,
       ),
-      "glass-shine",
+      "none",
     );
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(
@@ -89,7 +89,7 @@ try {
     assert.deepEqual(errors, []);
     await page.close();
     console.log(
-      `PASS ${width}px: header/PDF download, pattern, benefits, docs, demo mortgage, shine/reduced-motion, no overflow/errors`,
+      `PASS ${width}px: header/PDF download, pattern, benefits, docs, demo mortgage, no photo shine/reduced-motion, no overflow/errors`,
     );
   }
 } finally {

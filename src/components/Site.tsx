@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
+import { ParallaxCollage } from "@/components/ParallaxCollage";
 import {
   Benefits,
   Documents,
@@ -205,9 +206,7 @@ export default function Site({ preview }: { preview: boolean }) {
               </a>
             </div>
           </div>
-          <div
-            className={`hero-visual glass-photo ${preview ? "" : "brand-art"}`}
-          >
+          <div className={`hero-visual ${preview ? "" : "brand-art"}`}>
             {preview && (
               <SafeImage
                 src={assetPath("/media/light.webp")}
@@ -294,7 +293,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </p>
           </div>
           <div className="architecture-grid">
-            <div className="photo-tall glass-photo">
+            <div className="photo-tall">
               {preview ? (
                 <SafeImage
                   src={assetPath("/media/interior.webp")}
@@ -337,6 +336,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </div>
           </div>
         </section>
+        <ParallaxCollage preview={preview} />
         <PresentationCTA />
         <section id="location" className="location section">
           <div>
@@ -403,7 +403,7 @@ export default function Site({ preview }: { preview: boolean }) {
             </p>
           </div>
           <div className="spaces-grid">
-            <div className="garden glass-photo">
+            <div className="garden">
               {preview ? (
                 <SafeImage
                   src={assetPath("/media/garden.webp")}
@@ -624,7 +624,7 @@ export default function Site({ preview }: { preview: boolean }) {
                   className="gallery-item"
                   onClick={() => setActive(m)}
                 >
-                  <div className="glass-photo">
+                  <div className="gallery-photo">
                     <SafeImage
                       src={m.src}
                       alt={m.alt}

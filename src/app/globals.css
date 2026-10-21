@@ -2093,47 +2093,7 @@ video,
   white-space: nowrap;
   border: 0;
 }
-.glass-photo {
-  isolation: isolate;
-}
-.glass-photo::before {
-  content: "";
-  position: absolute;
-  inset: -20% -45%;
-  background: linear-gradient(
-    110deg,
-    transparent 38%,
-    #fff0 42%,
-    #ffffff38 49%,
-    #ffffff88 50%,
-    #ffffff26 54%,
-    transparent 63%
-  );
-  transform: translateX(-100%);
-  opacity: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-@keyframes glass-shine {
-  0% {
-    transform: translateX(-75%);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(75%);
-    opacity: 0;
-  }
-}
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .glass-photo:hover::before {
-    animation: glass-shine 900ms ease-out;
-  }
   .benefit-photo:hover img {
     transform: scale(1.025);
   }
@@ -2317,4 +2277,269 @@ video,
 .developer-documents p {
   margin-top: 8px;
   font-size: 12px;
+}
+
+/* A bounded editorial collage: one document scroll, six independent visual depths. */
+.parallax-collage {
+  --parallax-factor: 1;
+  position: relative;
+  height: 150vh;
+  min-height: 1240px;
+  max-height: 1620px;
+  background: #e4ded3;
+  overflow: clip;
+  isolation: isolate;
+  view-timeline-name: --izumi-collage;
+  view-timeline-axis: block;
+}
+.collage-label {
+  position: absolute;
+  top: 58px;
+  left: 6%;
+  z-index: 2;
+}
+.collage-heading {
+  position: absolute;
+  top: 39%;
+  left: 25%;
+  width: 50%;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+.collage-heading h2 {
+  font-size: clamp(44px, 5.3vw, 78px);
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+.collage-heading p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-top: 27px;
+}
+.collage-layers {
+  position: absolute;
+  inset: 0;
+}
+.parallax-layer {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--ivory);
+  z-index: 1;
+}
+.parallax-layer img {
+  object-fit: cover;
+}
+.parallax-layer figcaption {
+  position: absolute;
+  bottom: 13px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  background: #eee9dfe8;
+  color: var(--burgundy);
+}
+.parallax-layer figcaption span {
+  font-family: var(--font-tenor);
+  font-size: 16px;
+}
+.parallax-layer figcaption small {
+  font-size: 8px;
+}
+.layer-garden {
+  --depth: 110px;
+  left: 6%;
+  top: 10%;
+  width: 23%;
+  height: 360px;
+}
+.layer-garden img {
+  object-position: 50% 45%;
+}
+.layer-light {
+  --depth: -85px;
+  right: 6%;
+  top: 8%;
+  width: 24%;
+  height: 260px;
+}
+.layer-forms {
+  --depth: 65px;
+  left: 42%;
+  top: 12%;
+  width: 17%;
+  height: 215px;
+}
+.layer-forms img {
+  object-fit: contain;
+  background: var(--burgundy);
+}
+.layer-ink {
+  --depth: -100px;
+  left: 3%;
+  top: 56%;
+  width: 24%;
+  height: 280px;
+}
+.layer-scales {
+  --depth: 80px;
+  right: 3%;
+  top: 60%;
+  width: 24%;
+  height: 320px;
+}
+.layer-interior {
+  --depth: 125px;
+  left: 23%;
+  top: 80%;
+  width: 30%;
+  height: 245px;
+}
+.collage-note {
+  position: absolute;
+  bottom: 30px;
+  left: 6%;
+  right: 6%;
+  font-size: 9px;
+  color: var(--muted);
+  line-height: 1.8;
+  z-index: 2;
+}
+@keyframes collage-depth {
+  from {
+    transform: translate3d(0, calc(var(--depth) * var(--parallax-factor)), 0);
+  }
+  to {
+    transform: translate3d(
+      0,
+      calc(var(--depth) * var(--parallax-factor) * -1),
+      0
+    );
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax-layer {
+      animation: collage-depth 1s linear both;
+      animation-timeline: --izumi-collage;
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+@media (max-width: 1000px) and (min-width: 761px) {
+  .layer-garden {
+    height: 300px;
+  }
+  .layer-light {
+    height: 230px;
+  }
+  .layer-forms {
+    height: 185px;
+  }
+  .layer-ink {
+    height: 230px;
+  }
+  .layer-scales {
+    height: 280px;
+  }
+  .parallax-layer figcaption {
+    display: block;
+  }
+  .parallax-layer figcaption small {
+    display: block;
+    margin-top: 3px;
+  }
+}
+@media (max-width: 760px) {
+  .parallax-collage {
+    --parallax-factor: 0.3;
+    height: 1360px;
+    min-height: 0;
+    max-height: none;
+  }
+  .collage-label {
+    top: 40px;
+  }
+  .collage-heading {
+    top: 41%;
+    left: 6%;
+    width: 88%;
+  }
+  .collage-heading h2 {
+    font-size: clamp(40px, 11vw, 64px);
+  }
+  .collage-heading p {
+    font-size: 11px;
+    margin-top: 22px;
+  }
+  .layer-garden {
+    left: 6%;
+    top: 12%;
+    width: 42%;
+    height: 210px;
+  }
+  .layer-light {
+    right: 6%;
+    top: 8%;
+    width: 36%;
+    height: 160px;
+  }
+  .layer-forms {
+    left: auto;
+    right: 10%;
+    top: 27%;
+    width: 29%;
+    height: 140px;
+  }
+  .layer-ink {
+    left: 3%;
+    top: 63%;
+    width: 40%;
+    height: 170px;
+  }
+  .layer-scales {
+    right: 6%;
+    top: 72%;
+    width: 42%;
+    height: 220px;
+  }
+  .layer-interior {
+    left: 12%;
+    top: 84%;
+    width: 42%;
+    height: 160px;
+  }
+  .parallax-layer figcaption {
+    display: block;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 5px 6px;
+  }
+  .parallax-layer figcaption span {
+    font-size: 13px;
+  }
+  .parallax-layer figcaption small {
+    display: block;
+    font-size: 7px;
+    margin-top: 3px;
+  }
+  .collage-note {
+    bottom: 23px;
+    font-size: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    animation: none !important;
+    transform: none !important;
+  }
 }

@@ -19,6 +19,8 @@ for (const file of [
 }
 // GitHub Pages has no server runtime. Keep the unavailable server endpoint out of this static build.
 rmSync(resolve(stage, "src/app/api"), { recursive: true, force: true });
+// Static HTML needs no streaming fallback; keep content visible without hydration.
+rmSync(resolve(stage, "src/app/loading.tsx"), { force: true });
 symlinkSync(
   resolve(root, "node_modules"),
   resolve(stage, "node_modules"),

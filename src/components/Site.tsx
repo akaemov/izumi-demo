@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
+import { useMotion } from "@/hooks/useMotion";
 import {
   assetPath,
   apartments,
@@ -58,6 +59,7 @@ function Pending({
   );
 }
 export default function Site({ preview }: { preview: boolean }) {
+  useMotion();
   const [menu, setMenu] = useState(false),
     [category, setCategory] = useState("Все материалы"),
     [rooms, setRooms] = useState("all"),
@@ -101,6 +103,7 @@ export default function Site({ preview }: { preview: boolean }) {
   }
   return (
     <>
+      <div className="reading-progress" aria-hidden="true" />
       <a className="skip" href="#main">
         Перейти к содержимому
       </a>
@@ -740,7 +743,7 @@ export default function Site({ preview }: { preview: boolean }) {
         </button>
         {active && (
           <div className="lightbox">
-            <div className="lightbox-image">
+            <div className="lightbox-image" key={active.id}>
               <SafeImage src={active.src} alt={active.alt} fill sizes="90vw" />
             </div>
             <div className="lightbox-caption">
